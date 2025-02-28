@@ -15,9 +15,14 @@ export async function executeScript(query: string, parameters: any[]) {
     }
 }
 
-pool.on('connect', () => {
-    console.log('Connected to the database');
-});
+export async function connectDB() {
+    try {
+        await pool.connect();
+        return { success: true, error: false, message: config.pgConfig.application_name +  " Connected to " + config.pgConfig.host + " PostgreSQL Database as " + config.pgConfig.user + " Successfully" }
+    } catch (error: any) {
+        return { success: false, error: true, message: new Error(error).message }
+    }
+}
 
 pool.on('error', (err: any) => {
     console.error('Unexpected error on idle client', err);

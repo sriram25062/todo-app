@@ -6,6 +6,7 @@ const mountRoute = require("./routes/route");
 const basicAuth = require("./routes/_helpers/basic-auth");
 const bearerAuth = require("./routes/_helpers/bearer-auth");
 const dotenv = require("dotenv");
+const pgconnect = require("./pgconnect");
 
 dotenv.config();
 
@@ -28,8 +29,14 @@ app.use('/api', mountEncryptRoute);
 
 const port: any = process.env.APPPORT;
 
-app.listen(port, () => {
-    console.log("Task To-do App Server Listening on Port :" + port);
+app.listen(port, async () => {
+    try {
+        console.log("Task To-do App Server Listening on Port : " + port);
+        let connect = await pgconnect.connectDB();
+        console.info(connect.message);
+    } catch (error: any) {
+        console.error("Error in connecting to PostgreSQL Database", error);
+    }
 });
 
 process.on('uncaughtException', (error) => {
