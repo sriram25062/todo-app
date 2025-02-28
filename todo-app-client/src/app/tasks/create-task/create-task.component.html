@@ -1,0 +1,9 @@
+<form [formGroup]="createTaskForm" class="p-2 d-flex flex-row justify-content-start align-items-start flex-gap-10 full-width">
+    <input class="form-control" placeholder="Enter Task name" type="text" formControlName="TaskName" aria-label="task-name" name="task-name" id="task-name" autocomplete="task-name" required />
+    <div class="d-flex flex-row justify-content-start align-items-center">
+        <button [disabled]="createTaskForm.invalid" class="btn btn-primary d-flex flex-row justify-content-start align-items-start flex-gap-5" (click)="createTask()">
+            <span class="material-symbols-outlined text-white">add_task</span>
+            <span>Create</span>
+        </button>
+    </div>
+</form>

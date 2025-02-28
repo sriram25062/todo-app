@@ -1,0 +1,26 @@
+<div class="d-flex flex-row justify-content-between align-items-start full-width full-height" [style.height.vh]="100">
+    <div id="login-1" class="d-flex flex-column justify-content-start align-items-start w-50 bg-primary-1" [style.height.vh]="100">
+        <img src="../../assets/png/task-todo-1.png" alt="task-to-do" class="img-fluid" [style.height.vh]="100"/>
+    </div>
+    <div id="login-2" class="d-flex flex-column justify-content-start align-items-start w-50" [style.height.vh]="100">
+        <div class="d-flex flex-row justify-content-start align-items-center flex-gap-10 full-width p-3" [style.height.%]="8">
+            <img src="../../assets/png/logo.PNG" alt="task-to-do-logo" width="auto" height="50" />
+            <span class="fs-5 fw-bolder clr-primary-5">Task To-do</span>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center full-width" [style.height.%]="92">
+            <h1 class="fs-5 p-2 fw-bold clr-primary-5">Login</h1>
+            <form [formGroup]="loginForm" class="d-flex flex-column justify-content-start align-items-start flex-gap-10">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">&#64;</span>
+                    <input type="email" class="form-control" formControlName="Email" name="login-email" id="login-email" autocomplete="login-email"  placeholder="Email" required  aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text material-symbols-outlined md-16 pointer" id="addon-wrapping">lock</span>
+                    <input type="password" class="form-control" formControlName="Password" name="login-password" id="login-password" autocomplete="login-password" placeholder="Password" required  aria-describedby="addon-wrapping"/>
+                </div>
+                <span>Don't have account? <a [routerLink]="['/register']" routerLinkActive="router-link-active" >register</a></span>
+                <button class="primary" [disabled]="loginForm.invalid" (click)="loginUser()">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="p-2 d-flex flex-column justify-content-start align-items-start flex-gap-10 full-width overflow-auto" [style.height.%]="100">
+    @for(task of taskList; track task.task_id; let idx = $index;) {
+        <div class="d-flex flex-row justify-content-between align-items-center flex-gap-5 full-width">
+            <div class="form-check d-flex flex-row justify-content-start align-items-center full-width flex-gap-10">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="task.completed" [id]="'task-completed-check-' + idx" (change)="updateTask(task, idx)">
+                <label class="p-2 card full-width fw-bolder text-start pointer" [class]="task.completed ? 'text-decoration-line-through' : ''" [for]="'task-completed-check-' + idx">{{task.task_name}}</label>
+                <span class="material-symbols-outlined text-danger pointer" (click)="deleteTask(task, idx)">delete</span>
+            </div>
+        </div>
+    } @empty {
+        <div class="d-flex flex-row justify-content-center align-items-center flex-gap-5 full-width" [style.height.%]="100">
+            <span class="material-symbols-outlined">task_alt</span>
+            <span>No Tasks Found</span>
+        </div>
+    }
+</div>

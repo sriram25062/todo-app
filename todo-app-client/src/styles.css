@@ -1,0 +1,125 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --font: "Open Sans", serif;
+    --primary-1: #d1dbe4;
+    --primary-2: #a3b7ca;
+    --primary-3: #7593af;
+    --primary-4: #476f95;
+    --primary-5: #194a7a;
+    --white: #f4f4f4;
+    --red: #Ff0000;
+}
+
+html, body {
+    font-family: var(--font);
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: var(--primary-4);
+    background-color: var(--primary-1);
+    /* width: 94%;
+    margin: 0 auto; */
+}
+
+.full-width { width: 100% !important; }
+.full-height { height: 100% !important; }
+
+.material-symbols-outlined.md-8 { font-size: 8px; }
+.material-symbols-outlined.md-10 { font-size: 10px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-10 { font-size: 10px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-10 { font-size: 10px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-12 { font-size: 12px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-14 { font-size: 14px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-16 { font-size: 16px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-18 { font-size: 18px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-20 { font-size: 20px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-22 { font-size: 22px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-24 { font-size: 24px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-26 { font-size: 26px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-28 { font-size: 28px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-30 { font-size: 30px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-32 { font-size: 32px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-34 { font-size: 34px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-36 { font-size: 36px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-38 { font-size: 38px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-40 { font-size: 40px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-42 { font-size: 42px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-44 { font-size: 44px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-46 { font-size: 46px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-48 { font-size: 48px !important; color: var(--primary-5); }
+.material-symbols-outlined.md-50 { font-size: 50px !important; color: var(--primary-5); }
+
+.flex-gap-5 { gap: 5px; }
+.flex-gap-10 { gap: 10px; }
+.flex-gap-20 { gap: 20px; }
+.flex-gap-30 { gap: 30px; }
+.flex-gap-40 { gap: 40px; }
+.flex-gap-50 { gap: 50px; }
+.flex-gap-60 { gap: 60px; }
+.flex-gap-15 { gap: 15px; }
+.flex-gap-25 { gap: 25px; }
+.flex-gap-35 { gap: 35px; }
+
+.bg-primary-1 { background-color: var(--primary-1) !important; }
+.bg-primary-2 { background-color: var(--primary-2) !important; }
+.bg-primary-3 { background-color: var(--primary-3) !important; }
+.bg-primary-4 { background-color: var(--primary-4) !important; }
+.bg-primary-5 { background-color: var(--primary-5) !important; }
+
+.clr-primary-1 { color: var(--primary-1); }
+.clr-primary-2 { color: var(--primary-2); }
+.clr-primary-3 { color: var(--primary-3); }
+.clr-primary-4 { color: var(--primary-4); }
+.clr-primary-5 { color: var(--primary-5); }
+
+.pointer { cursor: pointer !important; }
+.default { cursor: default !important; }
+.not-allowed { cursor: not-allowed !important; }
+
+.vl-1 { border-left: 1px solid var(--primary-1); }
+.vl-2 { border-left: 2px solid var(--primary-1); }
+.vl-3 { border-left: 3px solid var(--primary-1); }
+
+.highlight-card {
+    background-color: var(--primary-5);
+    color: var(--white);
+}
+
+/* PRIMARY BUTTON */
+button.primary {
+    background-color: var(--primary-5);
+    color: var(--white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button.danger {
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button.primary:hover {
+    background-color: var(--primary-4);
+}
+
+button.danger:hover {
+    opacity: 0.5;
+}
+
+button.primary:disabled {
+    background-color: var(--primary-2);
+    cursor: not-allowed;
+}
+
+.card:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}

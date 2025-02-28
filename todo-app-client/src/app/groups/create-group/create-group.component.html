@@ -1,0 +1,9 @@
+<form [formGroup]="createGroupForm" class="p-2 d-flex flex-row justify-content-start align-items-start flex-gap-10 full-width">
+    <input class="form-control" placeholder="Enter Group name" type="text" formControlName="GroupName" aria-label="group-name" name="group-name" id="group-name" autocomplete="group-name" required />
+    <div class="d-flex flex-row justify-content-start align-items-center">
+        <button [disabled]="createGroupForm.invalid" class="btn btn-primary d-flex flex-row justify-content-start align-items-start flex-gap-5" (click)="createGroup()">
+            <span class="material-symbols-outlined text-white">add_circle</span>
+            <span>Create</span>
+        </button>
+    </div>
+</form>

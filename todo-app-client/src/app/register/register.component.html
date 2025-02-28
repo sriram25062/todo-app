@@ -1,0 +1,38 @@
+<div class="d-flex flex-row justify-content-between align-items-start full-width full-height" [style.height.vh]="100">
+    <div id="register-1" class="d-flex flex-column justify-content-start align-items-start w-50 bg-primary-1" [style.height.vh]="100">
+        <div class="d-flex flex-row justify-content-start align-items-center flex-gap-10 full-width p-3" [style.height.%]="8">
+            <img src="../../assets/png/logo.PNG" alt="task-to-do-logo" width="auto" height="50" />
+            <span class="fs-5 fw-bolder clr-primary-5">Task To-do</span>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center full-width" [style.height.%]="92">
+            <h1 class="fs-5 p-2 fw-bold clr-primary-5">Create your account</h1>
+            <form [formGroup]="userForm" class="d-flex flex-column justify-content-start align-items-start flex-gap-10">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">&#64;</span>
+                    <input type="email" class="form-control" formControlName="Email" name="register-email" id="register-email" autocomplete="register-email" placeholder="Email" required aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text material-symbols-outlined md-16 pointer" id="addon-wrapping">account_circle</span>
+                    <input type="text" class="form-control" formControlName="FullName" name="register-full-name" id="register-full-name" autocomplete="register-full-name" placeholder="Full name" required aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group flex-nowrap" hidden>
+                    <span class="input-group-text material-symbols-outlined md-16 pointer" id="addon-wrapping">call</span>
+                    <input type="tel" class="form-control" formControlName="Mobile" name="register-mobile" id="register-mobile" autocomplete="register-mobile" placeholder="Mobile" aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text material-symbols-outlined md-16 pointer" id="addon-wrapping">lock</span>
+                    <input type="password" class="form-control" formControlName="Password" name="register-password" id="register-password" autocomplete="register-password" placeholder="Password" required aria-describedby="addon-wrapping" />
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text material-symbols-outlined md-16 pointer" id="addon-wrapping">lock</span>
+                    <input type="password" class="form-control" formControlName="ConfirmPassword" name="register-cpassword" id="register-cpassword" autocomplete="register-cpassword" placeholder="Confirm Password" required aria-describedby="addon-wrapping"/>
+                </div>
+                <span>Already have account? <a [routerLink]="['/login']" routerLinkActive="router-link-active" >login</a></span>
+                <button class="primary" [disabled]="userForm.invalid" (click)="registerUser()">Register</button>
+            </form>
+        </div>
+    </div>
+    <div id="register-2" class="d-flex flex-row justify-content-start align-items-start w-50" [style.height.vh]="100">
+        <img src="../../assets/png/task-todo.png" alt="task-to-do" class="img-fluid" [style.height.vh]="100"/>
+    </div>
+</div>
