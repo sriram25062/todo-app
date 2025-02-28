@@ -29,7 +29,7 @@ app.use('/api', mountEncryptRoute);
 const port: any = process.env.APPPORT;
 
 app.listen(port, () => {
-    console.log("Task To-do App Server Listening on Port " + port);
+    console.log("Task To-do App Server Listening on Port :" + port);
 });
 
 process.on('uncaughtException', (error) => {
