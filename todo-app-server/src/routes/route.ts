@@ -1,5 +1,4 @@
-const exp = require("express");
-const router = exp.Router();
+const router = require("express").Router();
 
 const qryCntrl = require("../controllers/queryController");
 

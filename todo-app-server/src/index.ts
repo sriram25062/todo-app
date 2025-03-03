@@ -1,5 +1,4 @@
 const express = require("express");
-const parser = require("body-parser");
 const cors = require("cors");
 const mountEncryptRoute = require("./routes/auth_route");
 const mountRoute = require("./routes/route");
@@ -11,6 +10,8 @@ const pgconnect = require("./pgconnect");
 dotenv.config();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use((req: any, res: any, next: any) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -19,13 +20,10 @@ app.use((req: any, res: any, next: any) => {
     next();
 });
 
-app.use(parser.urlencoded({ extended: false }));
-app.use(parser.json());
-
 app.use('/', mountRoute);
-// app.use(basicAuth);
 app.use(bearerAuth);
 app.use('/api', mountEncryptRoute);
+
 
 const port: any = process.env.APPPORT;
 

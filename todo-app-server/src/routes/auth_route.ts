@@ -1,11 +1,6 @@
-const authExp = require("express");
-const authRouter = authExp.Router();
+const authRouter = require("express").Router();
 
 const authQryCntrl = require("../controllers/queryController");
-
-authRouter.get('/ping', (req: any, res: any) => {
-    res.json({ message: "Pong" })
-});
 
 authRouter.post("/groups/create", async (req: any, res: any) => {
     try {
