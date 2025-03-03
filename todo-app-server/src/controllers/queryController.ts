@@ -154,10 +154,10 @@ export async function loginUser(param: any) {
                     delete result.rows[0].hash_password;
                     return { success: true, error: false, result: result.rows[0], token: jwt.sign({ user_id: result.rows[0].user_id, email: result.rows[0].email }, JWT_SECRET, { expiresIn: '1h' }), message: "User Logged In Successfully" }
                 } else {
-                    return { success: true, error: false, message: "Invalid User Credentials" }
+                    return { success: false, error: false, message: "Invalid User Credentials" }
                 }
             } else {
-                return { success: true, error: false, message: "User Doesn't Exists" }
+                return { success: false, error: false, message: "User Doesn't Exists" }
             }
         } else {
             return { success: false, error: true, message: result.message }
