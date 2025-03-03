@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-const JWT_SECRET = 'Xh7#$sQW2KlP@1!Zm3ByN8$Vr5Ux&TgJ';
+const config = require('../../config');
+const JWT_SECRET = config.serverConfig.jwtSecret;
 
 const jwt = require('jsonwebtoken');
 

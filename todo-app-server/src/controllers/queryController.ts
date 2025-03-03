@@ -1,6 +1,7 @@
 import { qryModel } from "../models/queryModel"
 const bcrypt = require("bcrypt");
-const JWT_SECRET = 'Xh7#$sQW2KlP@1!Zm3ByN8$Vr5Ux&TgJ';
+const config = require('../config');
+const JWT_SECRET = config.serverConfig.jwtSecret;
 const qryClass = new qryModel();
 const jwt = require('jsonwebtoken');
 
