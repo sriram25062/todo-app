@@ -13,7 +13,7 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
 
   jwt.verify(token, JWT_SECRET, (err: any, user: any) => {
     if (err) return res.status(403).json({ message: 'Invalid Token' });
-    req.body = JSON.stringify(Object.assign(req.body, user));
+    req.body = Object.assign(req.body, user);
     next();
   });
 };
