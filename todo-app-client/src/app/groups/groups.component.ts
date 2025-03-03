@@ -54,7 +54,7 @@ export class GroupsComponent implements OnInit {
     let result: any =  await this.groupService.deleteGroup(group.group_id);
     if(result.success) {
       this.groupList.splice(idx, 1);
-      this.toasterService.show(result.message, 'success', 'ad_group');
+      this.toasterService.show(result.message, 'danger', 'delete');
     } else {
       this.toasterService.show(result.message, 'danger');
     }

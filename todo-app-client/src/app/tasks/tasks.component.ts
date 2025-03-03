@@ -69,7 +69,7 @@ export class TasksComponent implements OnChanges {
     let result: any =  await this.taskService.deleteTask(task.task_id);
     if(result.success) {
       this.taskList.splice(idx, 1);
-      this.toasterService.show(result.message, 'success', 'task_alt');
+      this.toasterService.show(result.message, 'danger', 'delete');
     } else {
       this.toasterService.show(result.message, 'danger');
     }
