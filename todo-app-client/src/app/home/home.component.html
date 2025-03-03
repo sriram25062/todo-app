@@ -1,11 +1,11 @@
 <div class="p-2 d-flex flex-row justify-content-center align-items-start full-width" [style.height.vh]="85" [style.width.%]="90">
-    <div class="p-1 d-flex flex-column justify-content-start align-items-start flex-gap-10" [style.height.%]="100" [style.width.%]="20">
+    <div class="p-1 d-flex flex-column justify-content-start align-items-start flex-gap-10" [style.height.%]="100" [style.width.%]="30">
         <b class="p-1 fs-5">My Groups</b>
         <app-create-group (groupCreated)="emitGroupCreated($event)" class="full-width"></app-create-group>
         <app-groups [appendGroup]="appendGroup" class="full-width" [style.height.%]="88" (selectedGroup)="emitselectedGroup($event)"></app-groups>
     </div>
     <span style="border-left: 2px solid var(--primary-2);" [style.height.%]="100"></span>
-    <div class="p-1 d-flex flex-column justify-content-between align-items-end flex-gap-10" [style.height.%]="100" [style.width.%]="70">
+    <div class="p-1 d-flex flex-column justify-content-between align-items-end flex-gap-10" [style.height.%]="100" [style.width.%]="60">
         <app-tasks [groupId]="selGroupId" [appendTask]="appendTask" class="full-width" [style.height.%]="95"></app-tasks>
         <app-create-task [groupId]="selGroupId" (taskCreated)="emitTaskCreated($event)" class="full-width"></app-create-task>
     </div>
