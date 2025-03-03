@@ -41,9 +41,7 @@ export async function createGroup(param: any) {
 
 export async function getMyGroups(param: any) {
     try {
-        console.log("param", param)
         let result = await qryClass.getMyGroups(param);
-        console.log("result.rows", result)
         if(result.success) {
             if(result.rowCount > 0) {
                 return { success: true, error: false, result: result.rows, message: "Group Data Fetched Successfully" }

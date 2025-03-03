@@ -6,11 +6,9 @@ export async function executeScript(query: string, parameters: any[]) {
     try {
         await pool.connect();
         let result = await pool.query(query, parameters);
-        console.log("res", result)
         if(result) { return { success: true, error: false, rows: result.rows, rowCount: result.rowCount }};
         await pool.end();
     } catch (error: any) {
-        console.log(error)
         return { success: false, error: true, message: new Error(error).message }
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_helpers/services/auth.service';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     FullName: new FormControl({ value: undefined, disabled: false }, Validators.compose([Validators.required, Validators.minLength(3)])),
     Mobile: new FormControl({ value: undefined, disabled: false }, Validators.compose([Validators.minLength(10)])),
     Password: new FormControl({ value: undefined, disabled: false }, Validators.compose([Validators.required, Validators.minLength(6)])),
-    ConfirmPassword: new FormControl({ value: undefined, disabled: false }, Validators.compose([Validators.required, Validators.minLength(6)])),
+    ConfirmPassword: new FormControl({ value: undefined, disabled: false }, Validators.compose([Validators.required, Validators.minLength(6), this.matchValues('Password')])),
   });
 
   constructor(
@@ -43,5 +43,21 @@ export class RegisterComponent implements OnInit {
     } else {
       console.error(result.message);
     }
+  }
+
+  matchValues(matchTo: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.parent) {
+        return null; // If the control is not yet part of a form group
+      }
+      
+      const matchControl = control.parent.get(matchTo);
+      
+      if (matchControl && control.value !== matchControl.value) {
+        return { mismatch: true };
+      }
+      
+      return null;
+    };
   }
 }

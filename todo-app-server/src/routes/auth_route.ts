@@ -18,9 +18,7 @@ authRouter.post("/groups/create", async (req: any, res: any) => {
 
 authRouter.get("/groups/own-list", async (req: any, res: any) => {
     try {
-        console.log("req", req);
         let result = await authQryCntrl.getMyGroups(Object.assign(req.body, req.params));
-        console.log("result", result.result);
         res.json(result);
     } catch (e: any) {
         res.json({ success: false, error: true, message: e.message });

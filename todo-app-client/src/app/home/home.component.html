@@ -4,6 +4,7 @@
         <app-create-group (groupCreated)="emitGroupCreated($event)" class="full-width"></app-create-group>
         <app-groups [appendGroup]="appendGroup" class="full-width" [style.height.%]="88" (selectedGroup)="emitselectedGroup($event)"></app-groups>
     </div>
+    <span style="border-left: 2px solid var(--primary-2);" [style.height.%]="100"></span>
     <div class="p-1 d-flex flex-column justify-content-between align-items-end flex-gap-10" [style.height.%]="100" [style.width.%]="70">
         <app-tasks [groupId]="selGroupId" [appendTask]="appendTask" class="full-width" [style.height.%]="95"></app-tasks>
         <app-create-task [groupId]="selGroupId" (taskCreated)="emitTaskCreated($event)" class="full-width"></app-create-task>
