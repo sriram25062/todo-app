@@ -35,7 +35,7 @@ export class CreateGroupComponent implements OnChanges {
   async createGroup() {
     let result: any =  await this.groupService.createGroup({ group_name: this.createGroupForm.get("GroupName")?.value });
     if(result.success) {
-      this.toasterService.show(result.message, 'success');
+      this.toasterService.show(result.message, 'success', 'ad_group');
       this.createGroupForm.reset();
       this.groupCreated.emit(Object.assign(result.result[0], { task_count: 0 }));
     } else {

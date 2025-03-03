@@ -36,7 +36,7 @@ export class CreateTaskComponent implements OnInit {
   async createTask() {
     let result: any =  await this.tasksService.createTask({ group_id: this.groupId, task_name: this.createTaskForm.get("TaskName")?.value });
     if(result.success) {
-      this.toasterService.show(result.message, 'success');
+      this.toasterService.show(result.message, 'success', 'task_alt');
       this.createTaskForm.reset();
       this.taskCreated.emit(result.result);
     } else {
