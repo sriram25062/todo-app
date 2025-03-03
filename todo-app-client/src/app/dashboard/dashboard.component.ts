@@ -25,6 +25,5 @@ export class DashboardComponent {
 
   getUserInfo() {
     let userInfo = this.authService.getUserInfo();
-    console.log(userInfo);
   }
 }

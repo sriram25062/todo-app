@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_helpers/services/auth.service';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { ToasterService } from '../_helpers/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -38,10 +40,10 @@ export class RegisterComponent implements OnInit {
     }
     let result: any = await this.authService.registerUser(param);
     if(result.success) {
-      console.log(result.message);
+      this.toasterService.show(result.message, 'success');
       this.router.navigate(['login']);
     } else {
-      console.error(result.message);
+      this.toasterService.show(result.message, 'danger');
     }
   }
 
@@ -50,7 +52,6 @@ export class RegisterComponent implements OnInit {
       if (!control.parent) {
         return null; // If the control is not yet part of a form group
       }
-      
       const matchControl = control.parent.get(matchTo);
       
       if (matchControl && control.value !== matchControl.value) {

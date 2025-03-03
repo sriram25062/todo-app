@@ -4,6 +4,9 @@
         <strong class="me-auto">Notification</strong>
         <button type="button" class="btn-close" (click)="toasterService.remove(toast)"></button>
     </div>
-    <div class="toast-body">{{ toast.message }}</div>
+    <div class="toast-body d-flex flex-row justify-content-start align-items-center flex-gap-5">
+        <span class="material-symbols-outlined">{{ toast.icon || 'notifications'}}</span>
+        <span>{{ toast.message }}</span>
+    </div>
     </div>
 </div>

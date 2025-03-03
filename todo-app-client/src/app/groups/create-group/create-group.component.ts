@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GroupsService } from '../../_helpers/services/groups.service';
+import { ToasterService } from '../../_helpers/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-create-group',
@@ -16,7 +17,8 @@ export class CreateGroupComponent implements OnChanges {
   @Output() groupCreated: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private groupService: GroupsService
+    private groupService: GroupsService,
+    private toasterService: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -28,17 +30,16 @@ export class CreateGroupComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    console.log("changes", changes);
   }
 
   async createGroup() {
     let result: any =  await this.groupService.createGroup({ group_name: this.createGroupForm.get("GroupName")?.value });
     if(result.success) {
+      this.toasterService.show(result.message, 'success');
       this.createGroupForm.reset();
-      this.groupCreated.emit(Object.assign(result.result, { task_count: 0 }));
-      console.info(result.message)
+      this.groupCreated.emit(Object.assign(result.result[0], { task_count: 0 }));
     } else {
-
+      this.toasterService.show(result.message, 'danger');
     }
   }
 

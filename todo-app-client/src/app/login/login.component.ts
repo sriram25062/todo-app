@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../_helpers/services/auth.service';
+import { ToasterService } from '../_helpers/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -35,11 +37,11 @@ export class LoginComponent implements OnInit {
     }
     let result: any = await this.authService.loginUser(param);
     if(result.success) {
-      console.log(result.message);
+      this.toasterService.show(result.message, 'success');
       localStorage.setItem("token", result.token);
       this.router.navigate(['home']);
     } else {
-      console.error(result.message);
+      this.toasterService.show(result.message, 'danger');
     }
   }
 }

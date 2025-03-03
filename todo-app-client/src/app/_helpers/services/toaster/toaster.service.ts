@@ -12,8 +12,7 @@ export class ToasterService {
     this.toasts.push({ message, type });
     setTimeout(() => {
       this.remove(this.toasts[0]);
-    }, 2000);
-    console.log(this.toasts)
+    }, 1800);
   }
 
   remove(toast: any) {
