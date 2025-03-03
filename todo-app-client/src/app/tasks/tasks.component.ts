@@ -2,10 +2,11 @@ import { FormsModule } from '@angular/forms';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TasksService } from '../_helpers/services/tasks.service';
 import { ToasterService } from '../_helpers/services/toaster/toaster.service';
+import { DatePipe } from '../_helpers/pipes/date.pipe';
 
 @Component({
   selector: 'app-tasks',
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -52,6 +53,7 @@ export class TasksComponent implements OnChanges {
     }
     let result: any = await this.taskService.updateTask(param);
     if(result.success) {
+      task = result.result[0];
       if(task.completed) {
         this.taskList.splice(idx, 1);
         this.taskList.push(task);
