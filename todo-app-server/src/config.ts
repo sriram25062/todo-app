@@ -13,4 +13,7 @@ export const pgConfig = {
     ssl: {
         rejectUnauthorized: false
     }
+
+export const serverConfig = {
+    jwtSecret: process.env.JWTSECRET,
 }
