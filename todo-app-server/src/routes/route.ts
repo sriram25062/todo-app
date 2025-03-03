@@ -8,7 +8,6 @@ router.get('/ping', (req: any, res: any) => {
 
 router.post("/user/create", async (req: any, res: any) => {
     try {
-        console.log(req.body)
         let result = await qryCntrl.createUser(req.body);
         res.json(result);
     } catch (e: any) {
