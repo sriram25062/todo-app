@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { AuthService } from '../_helpers/services/auth.service';
 import { Router } from '@angular/router';
 import { GroupsService } from '../_helpers/services/groups.service';
+import { ToasterService } from '../_helpers/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-groups',
@@ -20,6 +21,7 @@ export class GroupsComponent implements OnInit {
     private authService: AuthService,
     private groupService: GroupsService,
     private router: Router,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class GroupsComponent implements OnInit {
     //Add '${implements OnChanges}' to the class.
     if(changes['appendGroup'].currentValue != undefined) {
       this.groupList.push(changes['appendGroup'].currentValue);
+      this.selectGroup(changes['appendGroup'].currentValue);
       this.appendGroup = undefined;
     }
   }
@@ -43,7 +46,7 @@ export class GroupsComponent implements OnInit {
       this.groupList = result.result || [];
       this.selectGroup(this.groupList[0]);
     } else {
-
+      this.toasterService.show(result.message, 'danger');
     }
   }
 
@@ -51,8 +54,9 @@ export class GroupsComponent implements OnInit {
     let result: any =  await this.groupService.deleteGroup(group.group_id);
     if(result.success) {
       this.groupList.splice(idx, 1);
+      this.toasterService.show(result.message, 'success', 'ad_group');
     } else {
-
+      this.toasterService.show(result.message, 'danger');
     }
   }
 

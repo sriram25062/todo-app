@@ -1,5 +1,4 @@
-const exp = require("express");
-const router = exp.Router();
+const router = require("express").Router();
 
 const qryCntrl = require("../controllers/queryController");
 
@@ -9,7 +8,6 @@ router.get('/ping', (req: any, res: any) => {
 
 router.post("/user/create", async (req: any, res: any) => {
     try {
-        console.log(req.body)
         let result = await qryCntrl.createUser(req.body);
         res.json(result);
     } catch (e: any) {

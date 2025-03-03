@@ -26,17 +26,14 @@ export class HomeComponent implements OnInit{
   }
 
   emitGroupCreated(data: any) {
-    this.appendGroup = data[0];
-    console.log(data)
+    this.appendGroup = data;
   }
 
   emitTaskCreated(data: any) {
     this.appendTask = data[0];
-    console.log(data)
   }
 
   emitselectedGroup(data: any) {
     this.selGroupId = data.group_id;
-    console.log(data.group_id)
   }
 }

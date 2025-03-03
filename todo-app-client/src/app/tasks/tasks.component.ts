@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TasksService } from '../_helpers/services/tasks.service';
+import { ToasterService } from '../_helpers/services/toaster/toaster.service';
 
 @Component({
   selector: 'app-tasks',
@@ -16,12 +17,12 @@ export class TasksComponent implements OnChanges {
   
   constructor(
     private taskService: TasksService,
+    private toasterService: ToasterService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    console.log("changes", changes);
     if(changes['groupId'] && this.groupId == undefined || changes['groupId']?.currentValue != changes['groupId']?.previousValue) {
       this.getGroupTasks();
     }
@@ -39,7 +40,7 @@ export class TasksComponent implements OnChanges {
     if(result.success) {
       this.taskList = result.result || [];
     } else {
-
+      this.toasterService.show(result.message, 'danger');
     }
   }
 
@@ -58,8 +59,9 @@ export class TasksComponent implements OnChanges {
         this.taskList.splice(idx, 1);
         this.taskList.unshift(task);
       }
+      this.toasterService.show(result.message, 'success', 'task_alt');
     } else {
-
+      this.toasterService.show(result.message, 'danger');
     }
   }
   
@@ -67,8 +69,9 @@ export class TasksComponent implements OnChanges {
     let result: any =  await this.taskService.deleteTask(task.task_id);
     if(result.success) {
       this.taskList.splice(idx, 1);
+      this.toasterService.show(result.message, 'success', 'task_alt');
     } else {
-
+      this.toasterService.show(result.message, 'danger');
     }
   }
 }

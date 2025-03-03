@@ -1,15 +1,17 @@
 const express = require("express");
-const parser = require("body-parser");
 const cors = require("cors");
 const mountEncryptRoute = require("./routes/auth_route");
 const mountRoute = require("./routes/route");
 const basicAuth = require("./routes/_helpers/basic-auth");
 const bearerAuth = require("./routes/_helpers/bearer-auth");
 const dotenv = require("dotenv");
+const pgconnect = require("./pgconnect");
 
 dotenv.config();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use((req: any, res: any, next: any) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -18,18 +20,21 @@ app.use((req: any, res: any, next: any) => {
     next();
 });
 
-app.use(parser.urlencoded({ extended: false }));
-app.use(parser.json());
-
 app.use('/', mountRoute);
-// app.use(basicAuth);
 app.use(bearerAuth);
 app.use('/api', mountEncryptRoute);
 
+
 const port: any = process.env.APPPORT;
 
-app.listen(port, () => {
-    console.log("Task To-do App Server Listening on Port :" + port);
+app.listen(port, async () => {
+    try {
+        console.log("Task To-do App Server Listening on Port : " + port);
+        let connect = await pgconnect.connectDB();
+        console.info(connect.message);
+    } catch (error: any) {
+        console.error("Error in connecting to PostgreSQL Database", error);
+    }
 });
 
 process.on('uncaughtException', (error) => {

@@ -1,6 +1,7 @@
 import { qryModel } from "../models/queryModel"
 const bcrypt = require("bcrypt");
-const JWT_SECRET = 'Xh7#$sQW2KlP@1!Zm3ByN8$Vr5Ux&TgJ';
+const config = require('../config');
+const JWT_SECRET = config.serverConfig.jwtSecret;
 const qryClass = new qryModel();
 const jwt = require('jsonwebtoken');
 
@@ -41,9 +42,7 @@ export async function createGroup(param: any) {
 
 export async function getMyGroups(param: any) {
     try {
-        console.log("param", param)
         let result = await qryClass.getMyGroups(param);
-        console.log("result.rows", result)
         if(result.success) {
             if(result.rowCount > 0) {
                 return { success: true, error: false, result: result.rows, message: "Group Data Fetched Successfully" }
@@ -155,10 +154,10 @@ export async function loginUser(param: any) {
                     delete result.rows[0].hash_password;
                     return { success: true, error: false, result: result.rows[0], token: jwt.sign({ user_id: result.rows[0].user_id, email: result.rows[0].email }, JWT_SECRET, { expiresIn: '1h' }), message: "User Logged In Successfully" }
                 } else {
-                    return { success: true, error: false, message: "Invalid User Credentials" }
+                    return { success: false, error: false, message: "Invalid User Credentials" }
                 }
             } else {
-                return { success: true, error: false, message: "User Doesn't Exists" }
+                return { success: false, error: false, message: "User Doesn't Exists" }
             }
         } else {
             return { success: false, error: true, message: result.message }

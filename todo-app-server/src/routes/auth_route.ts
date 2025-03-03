@@ -1,11 +1,6 @@
-const authExp = require("express");
-const authRouter = authExp.Router();
+const authRouter = require("express").Router();
 
 const authQryCntrl = require("../controllers/queryController");
-
-authRouter.get('/ping', (req: any, res: any) => {
-    res.json({ message: "Pong" })
-});
 
 authRouter.post("/groups/create", async (req: any, res: any) => {
     try {
@@ -18,9 +13,7 @@ authRouter.post("/groups/create", async (req: any, res: any) => {
 
 authRouter.get("/groups/own-list", async (req: any, res: any) => {
     try {
-        console.log("req", req);
         let result = await authQryCntrl.getMyGroups(Object.assign(req.body, req.params));
-        console.log("result", result.result);
         res.json(result);
     } catch (e: any) {
         res.json({ success: false, error: true, message: e.message });
