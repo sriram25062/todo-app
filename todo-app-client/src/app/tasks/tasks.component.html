@@ -3,7 +3,10 @@
         <div class="d-flex flex-row justify-content-between align-items-center flex-gap-5 full-width">
             <div class="form-check d-flex flex-row justify-content-start align-items-center full-width flex-gap-10">
                 <input class="form-check-input" type="checkbox" [(ngModel)]="task.completed" [id]="'task-completed-check-' + idx" (change)="updateTask(task, idx)">
-                <label class="p-2 card full-width fw-bolder text-start pointer" [class]="task.completed ? 'text-decoration-line-through' : ''" [for]="'task-completed-check-' + idx">{{task.task_name}}</label>
+                <div class="p-2 card d-flex flex-row justify-content-between align-items-center full-width text-start" [class]="task.completed ? 'text-decoration-line-through' : ''">
+                    <label class="pointer clr-primary-5 fw-bolder">{{task.task_name}}</label>
+                    <span class="clr-primary-3">{{ task?.last_updated_on | appDate }}</span>
+                </div>
                 <span class="material-symbols-outlined text-danger pointer" (click)="deleteTask(task, idx)">delete</span>
             </div>
         </div>
