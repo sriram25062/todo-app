@@ -24,6 +24,9 @@ app.use('/', mountRoute);
 app.use(bearerAuth);
 app.use('/api', mountEncryptRoute);
 
+app.get('/', (req: any, res: any) => {
+    res.send("Welcome to Task To-do App Server");
+});
 
 const port: any = process.env.APPPORT;
 
