@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "scripts": {
     "devwp": "webpack --mode development --watch",
+    "build": "webpack --config webpack.config.js --mode production",
     "start": "nodemon build/index.js"
   },
   "keywords": [],
