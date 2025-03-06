@@ -20,13 +20,13 @@ app.use((req: any, res: any, next: any) => {
     next();
 });
 
-app.use('/', mountRoute);
-app.use(bearerAuth);
-app.use('/api', mountEncryptRoute);
-
 app.get('/', (req: any, res: any) => {
     res.send("Welcome to Task To-do App Server");
 });
+
+app.use('/', mountRoute);
+app.use(bearerAuth);
+app.use('/api', mountEncryptRoute);
 
 const port: any = process.env.APPPORT;
 
