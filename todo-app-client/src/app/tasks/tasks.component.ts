@@ -34,6 +34,7 @@ export class TasksComponent implements OnChanges {
   }
 
   async getGroupTasks() {
+    if(this.groupId == undefined) return;
     let param = {
       group_id: this.groupId
     }
