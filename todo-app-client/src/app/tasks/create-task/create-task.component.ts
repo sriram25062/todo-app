@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TasksService } from '../../_helpers/services/tasks.service';
 import { ToasterService } from '../../_helpers/services/toaster/toaster.service';
 
@@ -11,7 +11,7 @@ import { ToasterService } from '../../_helpers/services/toaster/toaster.service'
 })
 export class CreateTaskComponent implements OnInit {
   createTaskForm: FormGroup = new FormGroup({
-    TaskName: new FormControl({ value: undefined, disabled: false })
+    TaskName: new FormControl({ value: undefined, disabled: false }, Validators.compose([Validators.required, Validators.minLength(3)]))
   })
 
   @Input() groupId: number | undefined;
