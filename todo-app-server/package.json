@@ -1,6 +1,7 @@
 {
   "name": "todo-app-server",
   "version": "1.0.0",
+  "type": "commonjs",
   "main": "src/index.ts",
   "scripts": {
     "devwp": "webpack --mode development --watch",
